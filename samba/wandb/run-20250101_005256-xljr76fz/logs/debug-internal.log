@@ -1,0 +1,16 @@
+{"time":"2025-01-01T00:52:56.168535318-05:00","level":"INFO","msg":"using version","core version":"0.19.0"}
+{"time":"2025-01-01T00:52:56.168585593-05:00","level":"INFO","msg":"created symlink","path":"/gpfs/radev/project/ying_rex/wq44/samba/Samba/samba/wandb/run-20250101_005256-xljr76fz/logs/debug-core.log"}
+{"time":"2025-01-01T00:52:56.316646204-05:00","level":"INFO","msg":"created new stream","id":"xljr76fz"}
+{"time":"2025-01-01T00:52:56.316697602-05:00","level":"INFO","msg":"stream: started","id":"xljr76fz"}
+{"time":"2025-01-01T00:52:56.316727855-05:00","level":"INFO","msg":"writer: Do: started","stream_id":"xljr76fz"}
+{"time":"2025-01-01T00:52:56.316735933-05:00","level":"INFO","msg":"handler: started","stream_id":"xljr76fz"}
+{"time":"2025-01-01T00:52:56.316741519-05:00","level":"INFO","msg":"sender: started","stream_id":"xljr76fz"}
+{"time":"2025-01-01T00:52:56.568426141-05:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-01T00:53:45.332430989-05:00","level":"INFO","msg":"stream: closing","id":"xljr76fz"}
+{"time":"2025-01-01T00:53:45.332486306-05:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-01T00:53:45.33354997-05:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-01T00:53:45.767851296-05:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-01-01T00:53:45.867769764-05:00","level":"INFO","msg":"handler: closed","stream_id":"xljr76fz"}
+{"time":"2025-01-01T00:53:45.867816443-05:00","level":"INFO","msg":"writer: Close: closed","stream_id":"xljr76fz"}
+{"time":"2025-01-01T00:53:45.867824892-05:00","level":"INFO","msg":"sender: closed","stream_id":"xljr76fz"}
+{"time":"2025-01-01T00:53:45.867948065-05:00","level":"INFO","msg":"stream: closed","id":"xljr76fz"}

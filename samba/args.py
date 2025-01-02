@@ -46,6 +46,7 @@ def subject_lists(dataset):
     """
     Returns subject lists based on the dataset.
     """
+    return (['07'], ['07'])
     # Subject lists for each dataset
     subjects = {
         'megfmri': (['02', '03', '04', '05', '06', '07', '08', '09', '10', '11'],
@@ -223,6 +224,7 @@ def params_fn(server_mode='misha', dataset='eegfmri_translation'):
     parser.add_argument("--mc_n_sampling", default=20, type=float) 
     
     # hrf parameters 
+    parser.add_argument("--hrf_arch", default="hrf", type=str)
     parser.add_argument("--hrf_length", default=30, type=int)
     parser.add_argument("--hrf_stride", default=1, type=int)  #5 
     parser.add_argument("--hrf_n_parameters", default=6, type=int)
@@ -236,7 +238,7 @@ def params_fn(server_mode='misha', dataset='eegfmri_translation'):
     parser.add_argument("--dispersion_deviation", default=0.2, type=float)  
     parser.add_argument("--scale_deviation", default=0.1, type=float)      
 
-
+    parser.add_argument("--temporal_arch", default="wavelet", type=str)
     parser.add_argument("--wavelet_dims", default=[204, 106, 57, 57])  
     parser.add_argument("--second_translation", default=True)   
     

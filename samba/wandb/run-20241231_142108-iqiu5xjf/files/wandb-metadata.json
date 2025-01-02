@@ -1,0 +1,40 @@
+{
+  "os": "Linux-4.18.0-477.51.1.el8_8.x86_64-x86_64-with-glibc2.28",
+  "python": "CPython 3.10.15",
+  "startedAt": "2024-12-31T19:21:08.587834Z",
+  "args": [
+    "--temporal_arch",
+    "rnn"
+  ],
+  "program": "/gpfs/radev/project/ying_rex/wq44/samba/Samba/samba/main.py",
+  "codePath": "samba/main.py",
+  "git": {
+    "remote": "https://github.com/ArmanAfrasiyabi/Samba.git",
+    "commit": "a1504374087385e87be36f3280bbf8332c68695d"
+  },
+  "email": "904185965@qq.com",
+  "root": "/gpfs/radev/project/ying_rex/wq44/samba/Samba/samba",
+  "host": "r817u09n03.misha.ycrc.yale.edu",
+  "username": "wq44",
+  "executable": "/gpfs/radev/home/wq44/.conda/envs/samba/bin/python",
+  "codePathLocal": "main.py",
+  "cpu_count": 64,
+  "cpu_count_logical": 64,
+  "disk": {
+    "/": {
+      "total": "270374412288",
+      "used": "372461568"
+    }
+  },
+  "memory": {
+    "total": "540748828672"
+  },
+  "cpu": {
+    "count": 64,
+    "countLogical": 64
+  },
+  "slurm": {
+    "hint": "nomultithread",
+    "job_id": "137877"
+  }
+}

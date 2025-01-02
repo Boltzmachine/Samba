@@ -1,0 +1,16 @@
+{"time":"2025-01-01T11:05:24.429765314-05:00","level":"INFO","msg":"using version","core version":"0.19.0"}
+{"time":"2025-01-01T11:05:24.429809535-05:00","level":"INFO","msg":"created symlink","path":"/gpfs/radev/project/ying_rex/wq44/samba/Samba/samba/wandb/run-20250101_110524-2a4a1mmo/logs/debug-core.log"}
+{"time":"2025-01-01T11:05:24.584655086-05:00","level":"INFO","msg":"created new stream","id":"2a4a1mmo"}
+{"time":"2025-01-01T11:05:24.584693199-05:00","level":"INFO","msg":"stream: started","id":"2a4a1mmo"}
+{"time":"2025-01-01T11:05:24.584706208-05:00","level":"INFO","msg":"writer: Do: started","stream_id":"2a4a1mmo"}
+{"time":"2025-01-01T11:05:24.584712964-05:00","level":"INFO","msg":"sender: started","stream_id":"2a4a1mmo"}
+{"time":"2025-01-01T11:05:24.584720767-05:00","level":"INFO","msg":"handler: started","stream_id":"2a4a1mmo"}
+{"time":"2025-01-01T11:05:24.831431801-05:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-01T23:00:44.129453345-05:00","level":"INFO","msg":"stream: closing","id":"2a4a1mmo"}
+{"time":"2025-01-01T23:00:44.129485461-05:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-01T23:00:44.13004916-05:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-01T23:00:44.600383007-05:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-01-01T23:00:44.701794566-05:00","level":"INFO","msg":"handler: closed","stream_id":"2a4a1mmo"}
+{"time":"2025-01-01T23:00:44.701844899-05:00","level":"INFO","msg":"writer: Close: closed","stream_id":"2a4a1mmo"}
+{"time":"2025-01-01T23:00:44.70185161-05:00","level":"INFO","msg":"sender: closed","stream_id":"2a4a1mmo"}
+{"time":"2025-01-01T23:00:44.701968963-05:00","level":"INFO","msg":"stream: closed","id":"2a4a1mmo"}

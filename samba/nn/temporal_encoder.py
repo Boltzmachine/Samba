@@ -272,7 +272,7 @@ class WaveletAttentionNet(nn.Module):
         n_parcels = x_meg_hrf.shape[1]
         
         # Wavelet transform and individual band processing 
-        x_meg_hrf = rearrange(x_meg_hrf[:,:,:-1], 'b p (m t) -> (b p) m t', m=15)     # m samples per fmri 
+        x_meg_hrf = rearrange(x_meg_hrf, 'b p (m t) -> (b p) m t', m=15)     # m samples per fmri 
         x_wavelet_decomposition = []
         for s in range(x_meg_hrf.shape[1]):  
             xl, xh_list = self.dwt(x_meg_hrf[:, s, :].unsqueeze(1))   

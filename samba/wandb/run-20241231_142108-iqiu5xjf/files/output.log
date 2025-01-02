@@ -1,0 +1,13 @@
+itr.:     0 loss (train/valid): 0.990/0.999
+Traceback (most recent call last):
+  File "/gpfs/radev/project/ying_rex/wq44/samba/Samba/samba/main.py", line 147, in <module>
+    training(
+  File "/gpfs/radev/project/ying_rex/wq44/samba/Samba/samba/main.py", line 28, in training
+    loss.backward()
+  File "/gpfs/radev/home/wq44/.conda/envs/samba/lib/python3.10/site-packages/torch/_tensor.py", line 521, in backward
+    torch.autograd.backward(
+  File "/gpfs/radev/home/wq44/.conda/envs/samba/lib/python3.10/site-packages/torch/autograd/__init__.py", line 289, in backward
+    _engine_run_backward(
+  File "/gpfs/radev/home/wq44/.conda/envs/samba/lib/python3.10/site-packages/torch/autograd/graph.py", line 769, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

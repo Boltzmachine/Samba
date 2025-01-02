@@ -7,7 +7,60 @@ from einops import rearrange
 
 from args import cosine_embedding_loss
 from nn.temporal_encoder import PerParcelHrfLearning, WaveletAttentionNet
+from mambapy.mamba2 import Mamba2, Mamba2Config
 
+
+class TemporalRNNCompressor(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size, n_rnn_layers=2, output_time_steps=30, rnn_type='lstm'):
+        super().__init__()
+
+        self.input_proj = nn.Linear(input_size, hidden_size)
+        self.rnn_type = rnn_type
+        # Choose RNN type: LSTM or GRU
+        if rnn_type == "lstm":
+            self.encoder = nn.LSTM(hidden_size, hidden_size, batch_first=True, num_layers=n_rnn_layers)
+            self.decoder = nn.LSTM(hidden_size, hidden_size, batch_first=True, num_layers=n_rnn_layers)
+        elif rnn_type == 'mamba2':
+            config = Mamba2Config(d_model=hidden_size, n_layers=2, d_head=hidden_size//4)
+            self.encoder = Mamba2(config)
+            self.decoder = Mamba2(config)
+    
+        # Final linear layer to map to output size
+        self.fc = nn.Linear(hidden_size, output_size)
+
+        # Output temporal dimension
+        self.output_time_steps = output_time_steps
+
+    def forward(self, x):
+        """
+        Args:
+            x: Input tensor of shape (batch_size, 12000, input_size)
+        Returns:
+            Output tensor of shape (batch_size, 30, output_size)
+        """
+        batch_size = x.size(0)
+        x = self.input_proj(x)
+
+        # Encoder: Compress temporal dimension
+        if self.rnn_type == 'lstm':
+            _, (hidden, _) = self.encoder(x) if isinstance(self.encoder, nn.LSTM) else self.encoder(x)
+        elif self.rnn_type == 'mamba2':
+            hidden = self.encoder(x)[:, -1, :]
+
+
+        # Decoder: Upsample latent representation to desired temporal dimension
+        if self.rnn_type == 'lstm':
+            # Prepare decoder input: Initialize with zeros for the desired output steps
+            decoder_input = torch.zeros(batch_size, self.output_time_steps, hidden.size(-1), device=x.device)
+            decoder_output, _ = self.decoder(decoder_input, (hidden, torch.zeros_like(hidden)))
+        elif self.rnn_type == 'mamba2':
+            decoder_input = hidden.unsqueeze(1).repeat(1, self.output_time_steps, 1)
+            decoder_output = self.decoder(decoder_input)
+
+        # Apply a final linear layer to each time step
+        output = self.fc(decoder_output)
+
+        return output
 
 
 class SambaEleToHemo(nn.Module):
@@ -39,10 +92,16 @@ class SambaEleToHemo(nn.Module):
         """
         
         # Per-parcel hrf-learning
-        self.hrf_learning = PerParcelHrfLearning(args)
+        if args.hrf_arch == 'hrf':
+            self.hrf_learning = PerParcelHrfLearning(args)
+        elif args.hrf_arch == 'rnn':
+            self.hrf_learning = nn.LSTM(200, 128, args.hrf_layers, batch_first=True) #TODO
         
+        if args.temporal_arch == 'wavelet':
         # Per-parcel attention-based wavelet dcomposition learning
-        self.temporal_encoder = WaveletAttentionNet(args)
+            self.temporal_encoder = WaveletAttentionNet(args)
+        else:
+            self.temporal_encoder = TemporalRNNCompressor(200, 128, 200, output_time_steps=15*424, rnn_type=self.args.temporal_arch)
         
         # Over parcels graph decoder/upsampling
         from nn.spatial_decoder import GMWANet  
@@ -69,9 +128,15 @@ class SambaEleToHemo(nn.Module):
 
         # HRF learning 
         x_ele_hrf = self.hrf_learning(x_ele)                            # [10, 200, 12000]  --> [10, 200, 12000]
-  
+        if self.args.hrf_arch == 'hrf':
+            x_ele_hrf = x_ele_hrf[:,:,:-1]
         # Temporal encoding with wavelet attention
-        x_ele_wavelet, alphas = self.temporal_encoder(x_ele_hrf)        #  [10, 200, 12000]  -> [10, 200, 30]
+        if self.args.temporal_arch == 'wavelet':
+            x_ele_wavelet, alphas = self.temporal_encoder(x_ele_hrf)        #  [10, 200, 12000]  -> [10, 15, 424]
+        else:
+            x_ele_wavelet = self.temporal_encoder(x_ele_hrf.permute(0, 2, 1)).permute(0, 2, 1)  #  [10, 200, 12000]  -> [10, 200, 30]
+            alphas = 0
+            x_ele_wavelet = x_ele_wavelet.reshape(10 * 200, -1, 424)
 
         # Spatial decoding with graph attention
         teacher_forcing_ratio = self.args.ele_to_hemo_teacher_forcing_ratio if self.training else 0.0

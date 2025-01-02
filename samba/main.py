@@ -9,16 +9,20 @@ import time
 import os
 from utils.viz_corr import correlation_r2_plot 
 from einops import rearrange
+import wandb
 
 ## training
 def training(args, model, train_dataloader, valid_dataloader):  
     optimizer = Adam(model.parameters(), args.lr)   
     best_valoss = np.inf
     
+    wandb.init(project="samba", config=args)
+    
     for iteration, ((xm, xf, y_meta, y_batch), [t, sub_f, sub_m]) in enumerate(train_dataloader):  
     
         model.train()   
-        loss = model.loss(xm, xf, sub_m, sub_f, iteration)   
+        loss = model.loss(xm, xf, sub_m, sub_f, iteration)
+        wandb.log({"train/loss": loss})   
         
         optimizer.zero_grad()  
         loss.backward()  
@@ -26,7 +30,8 @@ def training(args, model, train_dataloader, valid_dataloader):
         
         # validate and save model 
         if iteration == 0  or iteration % args.validation_iteration == 0:  
-            valoss_i = validation(args, model, valid_dataloader, iteration) 
+            valoss_i = validation(args, model, valid_dataloader, iteration)
+            wandb.log({"val/loss": valoss_i}) 
             
             if valoss_i < best_valoss:
                 best_valoss = valoss_i

@@ -1,0 +1,72 @@
+Lmod has detected the following error: The following module(s) are unknown:
+"boltzmachine"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "boltzmachine"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+
+CondaError: Run 'conda init' before 'conda activate'
+
+[H[J[3Jwandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Currently logged in as: boltzmachine (neuroking). Use `wandb login --relogin` to force relogin
+wandb: WARNING Serializing object of type list that is 166552 bytes
+wandb: WARNING Serializing object of type list that is 166552 bytes
+wandb: WARNING Serializing object of type list that is 173016 bytes
+wandb: WARNING Serializing object of type list that is 173016 bytes
+wandb: Tracking run with wandb version 0.19.0
+wandb: Run data is saved locally in /gpfs/radev/project/ying_rex/wq44/samba/Samba/samba/wandb/run-20250101_143157-9jbfi13s
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run distinctive-thunder-7
+wandb: ⭐️ View project at https://wandb.ai/neuroking/samba
+wandb: 🚀 View run at https://wandb.ai/neuroking/samba/runs/9jbfi13s
+---------------------------------------------------
+
+       Device 0:  
+           Name: NVIDIA A40 
+           Memory: 44.34 GB
+           ----------------               
+           eleSub07_hemoSub07
+           accross the subjects!
+           ---------------------------------             
+           Model: SambaEleToHemo--eleSub07_hemoSub07--20250101-143155--eegfmri_translation
+
+---------------------------------------------------
+itr.:     0 loss (train/valid): 1.001/1.002
+itr.:    50 loss (train/valid): 0.984/0.994
+itr.:   100 loss (train/valid): 0.941/0.962
+itr.:   150 loss (train/valid): 0.863/0.928
+itr.:   200 loss (train/valid): 0.795/0.902
+itr.:   250 loss (train/valid): 0.748/0.884
+itr.:   300 loss (train/valid): 0.709/0.864
+itr.:   350 loss (train/valid): 0.681/0.855
+itr.:   400 loss (train/valid): 0.657/0.825
+itr.:   450 loss (train/valid): 0.637/0.826
+itr.:   500 loss (train/valid): 0.616/0.811
+itr.:   550 loss (train/valid): 0.600/0.788
+itr.:   600 loss (train/valid): 0.584/0.778
+itr.:   650 loss (train/valid): 0.573/0.766
+itr.:   700 loss (train/valid): 0.555/0.760
+itr.:   750 loss (train/valid): 0.547/0.740
+itr.:   800 loss (train/valid): 0.534/0.709
+itr.:   850 loss (train/valid): 0.522/0.698
+itr.:   900 loss (train/valid): 0.513/0.693
+itr.:   950 loss (train/valid): 0.502/0.648
+itr.:  1000 loss (train/valid): 0.494/0.630
+itr.:  1050 loss (train/valid): 0.485/0.614
+itr.:  1100 loss (train/valid): 0.477/0.594
+itr.:  1150 loss (train/valid): 0.473/0.565
+itr.:  1200 loss (train/valid): 0.467/0.562
+itr.:  1250 loss (train/valid): 0.460/0.541
+itr.:  1300 loss (train/valid): 0.453/0.529
+itr.:  1350 loss (train/valid): 0.451/0.523
+itr.:  1400 loss (train/valid): 0.445/0.511
+itr.:  1450 loss (train/valid): 0.445/0.500
+itr.:  1500 loss (train/valid): 0.439/0.497
+[1;34mwandb[0m: 🚀 View run [33mdistinctive-thunder-7[0m at: [34mhttps://wandb.ai/neuroking/samba/runs/9jbfi13s[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250101_143157-9jbfi13s/logs[0m
